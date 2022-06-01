@@ -11,11 +11,12 @@ headers = {
 "Upgrade-Insecure-Requests": "1",
 "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-G996U Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36",
 }
-
+# Getting HTML text of a website
 def get_html(link):
     html_ver = requests.get(link, headers=headers)
     return html_ver.text
 
+# Getting a list of links to animal pages
 def get_list_of_animal_links(html_text):
    try:
     array_of_animals = []
@@ -26,6 +27,8 @@ def get_list_of_animal_links(html_text):
     return array_of_animals
    except Exception as e:
        pass
+
+# Getting a name of each animal
 def get_title_of_animal(link):
    try:
     soup = BeautifulSoup(get_html(link), 'html.parser')
@@ -33,6 +36,8 @@ def get_title_of_animal(link):
     return title
    except Exception as e:
        pass
+
+#Function that allows to get all the facts from specific animal
 def get_facts(link):
    try:
     soup = BeautifulSoup(get_html(link), 'html.parser')
@@ -57,7 +62,10 @@ def get_facts(link):
    except Exception as e:
        pass
 
+#All avaible proporties of animals
 dict_of_properties = {}
+
+#Calling function to get whole list of links to animal pages
 try:
     final_list_of_animals = []
     link = "https://a-z-animals.com/animals/"
@@ -65,6 +73,7 @@ try:
     list_of_animal_links = get_list_of_animal_links(html_source_of_links)
 except Exception as e:
     pass
+#Using for loop to call function "get_fact" for each animal
 for animal in list_of_animal_links:
     try:
         facts = get_facts(animal)
@@ -75,7 +84,10 @@ for animal in list_of_animal_links:
     except Exception as e:
         pass
 
+#Deleting None objects
 finished_work = list(filter((None).__ne__, final_list_of_animals))
+
+#Creating Dataset and importing it to CSV file
 try:
     df = DataFrame(finished_work, columns=dict_of_properties.keys())
     df.to_csv('Animal.csv')
