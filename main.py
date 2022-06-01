@@ -68,7 +68,7 @@ except Exception as e:
 for animal in list_of_animal_links:
     try:
         facts = get_facts(animal)
-        for i,k in facts.items():
+        for i, k in facts.items():
             dict_of_properties.setdefault(i)
         print(facts)
         final_list_of_animals.append(facts)
