@@ -2,8 +2,7 @@
 Python script that allows to parse animal website (https://a-z-animals.com/animals/) into CSV file.
 The script only needs to be run, the CSV file will be saved to the local project folder.
 Required libraries:
-requests
-BeautifulSoup4
-collections
-pandas
-Script only 
+requests,
+BeautifulSoup4,
+collections,
+pandas.
