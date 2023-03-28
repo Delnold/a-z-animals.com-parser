@@ -88,8 +88,8 @@ def get_facts_of_all_animals_to_dict():
             facts = get_facts_of_animal(animal)
             for i, k in facts.items():
                 dict_of_all_animals_properties.setdefault(i)
-                # Used for showcasing facts in realtime
-                # print(facts)
+            # Showcasing added animals in realtime
+            #print(facts)
             final_list_of_animals.append(facts)
         except Exception as e:
             pass
